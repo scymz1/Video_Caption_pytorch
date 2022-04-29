@@ -38,6 +38,10 @@ Some code refers to [ImageCaptioning.pytorch](https://github.com/yunjey/pytorch-
 ### (Optional) c3d features
 you can use [video-classification-3d-cnn-pytorch](https://github.com/kenshohara/video-classification-3d-cnn-pytorch) to extract features from video. 
 
+```bash
+cd 
+```
+
 ### Steps
 
 1. preprocess videos and labels
