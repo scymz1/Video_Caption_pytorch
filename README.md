@@ -39,7 +39,12 @@ Some code refers to [ImageCaptioning.pytorch](https://github.com/yunjey/pytorch-
 you can use [video-classification-3d-cnn-pytorch](https://github.com/kenshohara/video-classification-3d-cnn-pytorch) to extract features from video. 
 
 ```bash
-cd 
+cd video-classification-3d-cnn-pytorch
+```
+
+To calculate video features for each 16 frames, use ```--mode feature```.
+```bash
+python main.py --input ./input --video_root ./videos --output ./output.json --model ./resnet-34-kinetics.pth --mode feature
 ```
 
 ### Steps
