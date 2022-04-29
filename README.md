@@ -55,9 +55,8 @@ if not os.path.exists(c3d_feat_dir):
     os.makedirs(c3d_feat_dir)
 for video_feat in c3d_feats:
     name=video_feat['video'].split('.')[0]+'.npy'
-    feat=np.array([clips['features'] for clips in video_feat['clips']])
+    feat=np.array([video['features'] for video in video_feat['clips']])
     np.save(os.path.join(c3d_feat_dir, name), feat)
-    break
 ```
 
 ### Steps
@@ -74,7 +73,7 @@ python prepro_vocab.py
 
 ```bash
 
-python train.py --gpu 0 --epochs 3001 --batch_size 300 --checkpoint_path data/save --feats_dir data/feats/resnet152 --model S2VTAttModel  --with_c3d 1 --c3d_feats_dir data/feats/c3d_feats --dim_vid 4096
+python train.py --gpu 0 --epochs 3001 --batch_size 300 --checkpoint_path data/save --feats_dir data/feats/resnet152 --model S2VTAttModel  --with_c3d 1 --c3d_feats_dir video-classification-3d-cnn-pytorch/c3d_feats --dim_vid 2560
 ```
 
 3. test
@@ -82,15 +81,13 @@ python train.py --gpu 0 --epochs 3001 --batch_size 300 --checkpoint_path data/sa
     opt_info.json will be in same directory as saved model.
 
 ```bash
-python eval.py --recover_opt data/save/opt_info.json --saved_model data/save/model_1000.pth --batch_size 100 --gpu 1
+python eval.py --recover_opt data/save/opt_info.json --saved_model data/save/model_100.pth --batch_size 100 --gpu 1
 ```
 
 ## TODO
 - lstm
-- beam search
-- reinforcement learning
-- dataparallel (broken in pytorch 0.4)
-
+- GPT-3 decoder
+- Test other ViT model as encoder
 
 ## Acknowledgements
 Some code refers to [ImageCaptioning.pytorch](https://github.com/ruotianluo/ImageCaptioning.pytorch)
