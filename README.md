@@ -46,6 +46,19 @@ To calculate video features for each 16 frames, use ```--mode feature```.
 ```bash
 python main.py --input ./input --video_root ./videos --output ./output.json --model ./resnet-34-kinetics.pth --mode feature
 ```
+Modify feature from output.json into format of (video0.npy, video1.npy, video1.npy ...)
+```python
+import json
+c3d_feats=json.load(open("output.json", "r"))
+c3d_feat_dir='c3d_feats/'
+if not os.path.exists(c3d_feat_dir):
+    os.makedirs(c3d_feat_dir)
+for video_feat in c3d_feats:
+    name=video_feat['video'].split('.')[0]+'.npy'
+    feat=np.array([clips['features'] for clips in video_feat['clips']])
+    np.save(os.path.join(c3d_feat_dir, name), feat)
+    break
+```
 
 ### Steps
 
