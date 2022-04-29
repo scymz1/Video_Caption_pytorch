@@ -62,6 +62,7 @@ for video_feat in c3d_feats:
 ### Steps
 
 1. preprocess videos and labels
+The model you can use: ``` --model ``` ["resnet152", "inception_v3", "inception_v4", "CLIP_ViT_B-32"]
 
 ```bash
 python prepro_feats.py --output_dir data/feats/resnet152 --model resnet152 --n_frame_steps 40  --gpu 4,5
